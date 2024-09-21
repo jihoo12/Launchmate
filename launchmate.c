@@ -60,7 +60,7 @@ static void activate(GtkApplication* app, void *_data) {
     gtk_layer_set_margin(GTK_WINDOW(window), GTK_LAYER_SHELL_EDGE_BOTTOM, 100);
 
     GtkCssProvider *provider = gtk_css_provider_new();
-    gtk_css_provider_load_from_path(provider, "style.css");
+    gtk_css_provider_load_from_path(provider, "$HOME/.config/launchmate/style.css");
     gtk_style_context_add_provider_for_display(gdk_display_get_default(),
                         GTK_STYLE_PROVIDER(provider),
                         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
