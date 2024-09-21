@@ -1,6 +1,6 @@
 #include "gtk4-layer-shell.h"
 #include <gtk/gtk.h>
-
+#include <stdio.h>
 static GtkWidget *window;
 static GtkWidget *box;
 static GtkWidget *entry;
@@ -58,9 +58,11 @@ static void activate(GtkApplication* app, void *_data) {
     gtk_layer_set_margin(GTK_WINDOW(window), GTK_LAYER_SHELL_EDGE_RIGHT, 100);
     gtk_layer_set_margin(GTK_WINDOW(window), GTK_LAYER_SHELL_EDGE_TOP, 100);
     gtk_layer_set_margin(GTK_WINDOW(window), GTK_LAYER_SHELL_EDGE_BOTTOM, 100);
-
+    const char *home_dir = getenv("HOME");
+    char css_path[128];
+    snprintf(css_path,sizeof(css_path),"%s/.config/launchmate/style.css", home_dir);
     GtkCssProvider *provider = gtk_css_provider_new();
-    gtk_css_provider_load_from_path(provider, "style.css");
+    gtk_css_provider_load_from_path(provider,css_path);
     gtk_style_context_add_provider_for_display(gdk_display_get_default(),
                         GTK_STYLE_PROVIDER(provider),
                         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
