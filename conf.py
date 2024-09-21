@@ -1,7 +1,6 @@
 import dbus
 
 bus = dbus.SessionBus()
-proxy = bus.get_object('org.example.PopupDaemon', '/org/example/PopupDaemon')
-interface = dbus.Interface(proxy, 'org.example.PopupDaemon')
-
-interface.SetLabel("hello")
+proxy = bus.get_object('org.example.LauncherDaemon', '/org/example/LauncherDaemon')
+interface = dbus.Interface(proxy, 'org.example.LauncherDaemon')
+interface.ShowLauncher()
