@@ -81,8 +81,9 @@ static void activate(GtkApplication* app, void *_data) {
     GtkEventController *key_controller = gtk_event_controller_key_new();
     g_signal_connect(key_controller, "key-pressed", G_CALLBACK(on_key_press), NULL);
     gtk_widget_add_controller(window, key_controller);
-
+    gtk_layer_set_keyboard_mode(GTK_WINDOW(window), GTK_LAYER_SHELL_KEYBOARD_MODE_EXCLUSIVE);
     gtk_widget_set_visible(window, TRUE);
+    gtk_widget_grab_focus(entry);
 }
 
 int main(int argc, char **argv) {
